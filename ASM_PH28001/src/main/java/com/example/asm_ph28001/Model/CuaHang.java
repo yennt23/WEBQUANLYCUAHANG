@@ -15,7 +15,6 @@ import java.util.UUID;
 public class CuaHang {
     @Id
     @GenericGenerator(name = "generator", strategy = "uuid2", parameters = {})
-
     @GeneratedValue(generator = "generator")
     @Column(columnDefinition = "uniqueidentifier")
     private UUID id;

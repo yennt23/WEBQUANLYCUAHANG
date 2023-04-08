@@ -58,7 +58,9 @@ public class ServletDongSP extends HttpServlet {
         if(uri.contains("add")){
             String ma = request.getParameter("ma");
             String ten = request.getParameter("ten");
-            DongSP dongSP = new DongSP(ma,ten);
+            DongSP dongSP = new DongSP();
+            dongSP.setMa(ma);
+            dongSP.setTen(ten);
             dongSanPhamRepository.add(dongSP);
             response.sendRedirect("/DongSanPham/hien-thi");
         }

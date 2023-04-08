@@ -9,30 +9,33 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<header>
-    <h3 style="text-align: center;">Thêm</h3>
-</header>
-<form action="/ServletNSX/add?id=${nsx.id}" method="post">
-    <div class="row mt-4">
-        <div class="col-6">
-            <label>Mã</label>
-            <input type="text" class="form-control"  name="ma"/>
+<jsp:include page="../header.jsp" />
+<main class="container">
+    <header>
+        <br>
+        <h3 style="text-align: center;">Quản Lý NSX</h3>
+    </header>
+    <form action="/ServletNSX/add?id=${nsx.id}" method="post">
+        <div class="row mt-4">
+            <div class="col-6">
+                <label>Mã</label>
+                <input type="text" class="form-control" name="ma"/>
+            </div>
+            <div class="col-6">
+                <label>Tên</label>
+                <input type="text" class="form-control" name="ten"/>
+            </div>
         </div>
-        <div class="col-6">
-            <label>Tên</label>
-            <input type="text" class="form-control"  name="ten"/>
+        <div class="row mt-4" style="justify-content: center">
+            <button class="btn btn-success col-1 m-3" type="submit">
+                Add
+            </button>
         </div>
-
-    </div>
-
-    <div class="row mt-4" style="justify-content: center">
-        <button class="btn btn-success col-1 m-3" type="submit">
-            Add
-        </button>
-    </div>
-
-</form>
+    </form>
+</main>
 </body>
 </html>

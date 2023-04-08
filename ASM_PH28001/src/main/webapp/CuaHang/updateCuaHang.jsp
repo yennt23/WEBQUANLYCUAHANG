@@ -15,16 +15,18 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<header>
-  <h3 style="text-align: center;">Thêm</h3>
-</header>
+<jsp:include page="../header.jsp" />
 <main class="container">
+  <header>
+    <br>
+    <h3 style="text-align: center;">Quản Lý Cửa Hàng</h3>
+  </header>
   <section>
     <form action="/ServletCuaHang/update" method="post">
       <div class="row mt-4">
         <div class="col-6">
           <label>Id</label>
-          <input type="text" class="form-control" value="${cuaHang.id}" name="id"/>
+          <input type="hidden" class="form-control" value="${cuaHang.id}" name="id"/>
         </div>
 
         <div class="col-6">

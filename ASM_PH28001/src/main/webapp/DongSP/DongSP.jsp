@@ -14,36 +14,40 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<header>
+<jsp:include page="../header.jsp" />
+<main class="container">
+    <header>
+        <br>
         <h3 style="text-align: center;">Quản Lý Dong SP</h3>
         <section>
             <a href="/DongSanPham/view-add" class="btn btn-success " tabindex="-1" role="button"
                aria-disabled="true">Add</a>
         </section>
-</header>
-<table class="table ">
-    <thead>
-    <tr>
-        <th scope="col">id</th>
-        <th scope="col">ma</th>
-        <th scope="col">ten</th>
-    </tr>
-    </thead>
-    <tboby>
-        <c:forEach items="${listDongSanPham}" var="l">
-            <tr>
-                <td>${l.id}</td>
-                <td>${l.ma}</td>
-                <td>${l.ten}</td>
-                <td>
-                    <a href="/DongSanPham/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
-                       aria-disabled="true">Remove</a>
-                    <a href="/DongSanPham/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
-                       aria-disabled="true">update</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </tboby>
-</table>
+    </header>
+    <table class="table ">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">ma</th>
+            <th scope="col">ten</th>
+        </tr>
+        </thead>
+        <tboby>
+            <c:forEach items="${listDongSanPham}" var="l">
+                <tr>
+                    <td>${l.id}</td>
+                    <td>${l.ma}</td>
+                    <td>${l.ten}</td>
+                    <td>
+                        <a href="/DongSanPham/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                           aria-disabled="true">Remove</a>
+                        <a href="/DongSanPham/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                           aria-disabled="true">update</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tboby>
+    </table>
+</main>
 </body>
 </html>

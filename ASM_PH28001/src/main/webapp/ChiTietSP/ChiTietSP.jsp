@@ -15,49 +15,54 @@
 
 </head>
 <body>
-<header>
-    <h3 style="text-align: center;">Quản Lý CTSP</h3>
-    <section>
-        <a href="/ServletChiTietSP/view-add" class="btn btn-success " tabindex="-1" role="button"
-           aria-disabled="true">Add</a>
-    </section>
-</header>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">id</th>
-        <th scope="col">ten mau</th>
-        <th scope="col">ten sp</th>
-        <th scope="col">ten NSX</th>
-        <th scope="col">ten Dong SP</th>
-        <th scope="col">NAM BH</th>
-        <th scope="col">MOTA</th>
-        <th scope="col">SO LUONG TON</th>
-        <th scope="col">GIA NHAP</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${listChiTietSP}" var="l">
+<jsp:include page="../header.jsp" />
+<main class="container">
+
+    <header>
+        <br>
+        <h3 style="text-align: center;">Quản Lý CTSP</h3>
+        <section>
+            <a href="/ServletChiTietSP/view-add" class="btn btn-success " tabindex="-1" role="button"
+               aria-disabled="true">Add</a>
+        </section>
+    </header>
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <td>${l.id}</td>
-            <td>${l.mauSac.ten}</td>
-            <td>${l.sanpham.ten}</td>
-            <td>${l.nsx.ten}</td>
-            <td>${l.dongSP.ten}</td>
-            <td>${l.namBH}</td>
-            <td>${l.moTa}</td>
-            <td>${l.soLuongTon}</td>
-            <td>${l.giaNhap}</td>
-            <td>
-                <a href="/ServletChiTietSP/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
-                   aria-disabled="true">Remove</a>
-                <a href="/ServletChiTietSP/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
-                   aria-disabled="true">update</a>
-            </td>
+            <th scope="col">id</th>
+            <th scope="col">ten mau</th>
+            <th scope="col">ten sp</th>
+            <th scope="col">ten NSX</th>
+            <th scope="col">ten Dong SP</th>
+            <th scope="col">NAM BH</th>
+            <th scope="col">MOTA</th>
+            <th scope="col">SO LUONG TON</th>
+            <th scope="col">GIA NHAP</th>
+            <th scope="col">Action</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach items="${listChiTietSP}" var="l">
+            <tr>
+                <td>${l.id}</td>
+                <td>${l.mauSac.ten}</td>
+                <td>${l.sanpham.ten}</td>
+                <td>${l.nsx.ten}</td>
+                <td>${l.dongSP.ten}</td>
+                <td>${l.namBH}</td>
+                <td>${l.moTa}</td>
+                <td>${l.soLuongTon}</td>
+                <td>${l.giaNhap}</td>
+                <td>
+                    <a href="/ServletChiTietSP/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                       aria-disabled="true">Remove</a>
+                    <a href="/ServletChiTietSP/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                       aria-disabled="true">update</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</main>
 </body>
 </html>

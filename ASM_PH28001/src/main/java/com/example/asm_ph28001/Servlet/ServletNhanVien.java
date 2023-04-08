@@ -1,7 +1,8 @@
 package com.example.asm_ph28001.Servlet;
 
-import com.example.asm_ph28001.Model.KhachHang;
-import com.example.asm_ph28001.Model.NhanVien;
+import com.example.asm_ph28001.Model.*;
+import com.example.asm_ph28001.repository.ChucVuRepository;
+import com.example.asm_ph28001.repository.CuaHangRepository;
 import com.example.asm_ph28001.repository.NhanVienRepository;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -10,6 +11,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +29,8 @@ public class ServletNhanVien extends HttpServlet {
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     private NhanVienRepository nhanVienRepository = new NhanVienRepository();
+    private ChucVuRepository chucVuRepository = new ChucVuRepository();
+    private CuaHangRepository cuaHangRepository = new CuaHangRepository();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uri = request.getRequestURI();
@@ -49,13 +53,31 @@ public class ServletNhanVien extends HttpServlet {
 
     private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UUID id = UUID.fromString(request.getParameter("id"));
-        NhanVien nhanVien = new NhanVien();
-        nhanVien = nhanVienRepository.getById(id);
+        NhanVien nhanVien = nhanVienRepository.getById(id);
+
+        List<ChucVu> listcv = new ArrayList<>();
+        listcv = chucVuRepository.getAll();
+        request.setAttribute("listcv", listcv);
+
+        List<CuaHang> listch = new ArrayList<>();
+        listch = cuaHangRepository.getAll();
+        request.setAttribute("listch", listch);
+
+
         request.setAttribute("nhanVien",nhanVien);
+
         request.getRequestDispatcher("/NhanVien/updateNhanVien.jsp").forward(request,response);
     }
 
     private void viewadd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<ChucVu> listcv = new ArrayList<>();
+        listcv = chucVuRepository.getAll();
+        request.setAttribute("listcv", listcv);
+
+        List<CuaHang> listch = new ArrayList<>();
+        listch = cuaHangRepository.getAll();
+        request.setAttribute("listch", listch);
+
         request.getRequestDispatcher("/NhanVien/addNhanVien.jsp").forward(request,response);
     }
 
@@ -63,6 +85,16 @@ public class ServletNhanVien extends HttpServlet {
         UUID id = UUID.fromString(request.getParameter("id"));
         NhanVien nhanVien = new NhanVien();
         nhanVien = nhanVienRepository.getById(id);
+        System.out.println(nhanVien.getNgaySinh());
+        String ngaySinh = dateFormat.format(nhanVien.getNgaySinh());
+        request.setAttribute("ngaySinh", ngaySinh);
+        List<ChucVu> listcv = new ArrayList<>();
+        listcv = chucVuRepository.getAll();
+        request.setAttribute("listcv", listcv);
+
+        List<CuaHang> listch = new ArrayList<>();
+        listch = cuaHangRepository.getAll();
+        request.setAttribute("listch", listch);
         request.setAttribute("nhanVien",nhanVien);
         request.getRequestDispatcher("/NhanVien/updateNhanVien.jsp").forward(request,response);
     }
@@ -94,6 +126,10 @@ public class ServletNhanVien extends HttpServlet {
             String gioiTinh = request.getParameter("gioiTinh");
             String diaChi = request.getParameter("diaChi");
             String sdt = request.getParameter("sdt");
+            String idcv = request.getParameter("chucVu");
+            ChucVu chucVu = chucVuRepository.getById(UUID.fromString(idcv));
+            String idch = request.getParameter("cuaHang");
+            CuaHang cuaHang = cuaHangRepository.getById(UUID.fromString(idch));
             Date ngaySinh;
             try {
                 ngaySinh = dateFormat.parse(request.getParameter("ngaySinh"));
@@ -114,7 +150,8 @@ public class ServletNhanVien extends HttpServlet {
             nhanVien.setHo(ho);
             nhanVien.setMatKhau(matKhau);
             nhanVien.setTrangThai(Integer.parseInt(trangThai));
-
+            nhanVien.setCv(chucVu);
+            nhanVien.setCuaHang(cuaHang);
            nhanVienRepository.add(nhanVien);
             response.sendRedirect("/ServletNhanVien/hien-thi");
         }
@@ -127,6 +164,10 @@ public class ServletNhanVien extends HttpServlet {
                 String gioiTinh = request.getParameter("gioiTinh");
                 String diaChi = request.getParameter("diaChi");
                 String sdt = request.getParameter("sdt");
+                String idcv = request.getParameter("chucVu");
+                ChucVu chucVu = chucVuRepository.getById(UUID.fromString(idcv));
+                String idch = request.getParameter("cuaHang");
+                CuaHang cuaHang = cuaHangRepository.getById(UUID.fromString(idch));
                 Date ngaySinh;
                 try {
                     ngaySinh = dateFormat.parse(request.getParameter("ngaySinh"));
@@ -146,6 +187,8 @@ public class ServletNhanVien extends HttpServlet {
                 nhanVien.setSdt(sdt);
                 nhanVien.setNgaySinh(ngaySinh);
                 nhanVien.setHo(ho);
+                nhanVien.setCv(chucVu);
+                nhanVien.setCuaHang(cuaHang);
                 nhanVien.setMatKhau(matKhau);
                 nhanVien.setTrangThai(Integer.parseInt(trangThai));
 

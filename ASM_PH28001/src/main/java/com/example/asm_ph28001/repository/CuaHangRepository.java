@@ -19,7 +19,7 @@ public class CuaHangRepository {
     }
 
     public boolean add(CuaHang cuaHang) {
-        Transaction transaction = null;
+        Transaction transaction;
         try {
             transaction = session.beginTransaction();
             session.save(cuaHang);
@@ -32,7 +32,7 @@ public class CuaHangRepository {
     }
 
     public boolean update(CuaHang cuaHang) {
-        Transaction transaction = null;
+        Transaction transaction;
         try {
             transaction = session.beginTransaction();
             session.update(cuaHang);
@@ -45,7 +45,7 @@ public class CuaHangRepository {
     }
 
     public boolean delete(CuaHang cuaHang) {
-        Transaction transaction = null;
+        Transaction transaction ;
         try {
             transaction = session.beginTransaction();
             session.delete(cuaHang);

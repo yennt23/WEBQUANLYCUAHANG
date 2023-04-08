@@ -83,8 +83,10 @@ public class ServletMauSac extends HttpServlet {
         UUID id = UUID.fromString(request.getParameter("id"));
         String ma = request.getParameter("ma");
         String ten = request.getParameter("ten");
-        MauSac mauSac = new MauSac(ma,ten);
+        MauSac mauSac = new MauSac();
         mauSac = mauSacRepository.getById(id);
+        mauSac.setMa(ma);
+        mauSac.setTen(ten);
         mauSacRepository.update(mauSac);
         response.sendRedirect("/ServletMauSac/hien-thi");
     }
@@ -92,7 +94,9 @@ public class ServletMauSac extends HttpServlet {
     private void addMauSac(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String ma = request.getParameter("ma");
         String ten = request.getParameter("ten");
-        MauSac mauSac = new MauSac(ma,ten);
+        MauSac mauSac = new MauSac();
+        mauSac.setMa(ma);
+        mauSac.setTen(ten);
         mauSacRepository.add(mauSac);
         response.sendRedirect("/ServletMauSac/hien-thi");
     }

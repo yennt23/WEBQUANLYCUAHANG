@@ -29,22 +29,19 @@ public class ServletChiTietSP extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String uri = request.getRequestURI();
-    if(uri.contains("hien-thi")){
-        this.hienThi(request,response);
-    }
-    else if(uri.contains("delete")){
-        this.deleteChiTietSP(request,response);
-    }
-    else if(uri.contains("detail")){
-        this.detailCTSP(request,response);
+        String uri = request.getRequestURI();
+        if (uri.contains("hien-thi")) {
+            this.hienThi(request, response);
+        } else if (uri.contains("delete")) {
+            this.deleteChiTietSP(request, response);
+        } else if (uri.contains("detail")) {
+            this.detailCTSP(request, response);
 
-    } else if(uri.contains("view-add")){
-        this.viewAdd(request,response);
-    }
-    else if(uri.contains("view-update")){
-        this.viewUpdate(request,response);
-    }
+        } else if (uri.contains("view-add")) {
+            this.viewAdd(request, response);
+        } else if (uri.contains("view-update")) {
+            this.viewUpdate(request, response);
+        }
 
 
     }
@@ -52,8 +49,8 @@ public class ServletChiTietSP extends HttpServlet {
     private void detailCTSP(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UUID id = UUID.fromString(request.getParameter("id"));
         ChiTietSP chiTietSP = new ChiTietSP();
-         chiTietSP = chiTietSPRepository.getById(id);
-        request.setAttribute("chiTietSP",chiTietSP);
+        chiTietSP = chiTietSPRepository.getById(id);
+        request.setAttribute("chiTietSP", chiTietSP);
 
         List<MauSac> listMau = new ArrayList<>();
         listMau = mauSacRepository.getAll();
@@ -73,7 +70,7 @@ public class ServletChiTietSP extends HttpServlet {
         request.setAttribute("listDongSP", listDongSP);
 
 
-        request.getRequestDispatcher("/ChiTietSP/updateChiTietSP.jsp").forward(request,response);
+        request.getRequestDispatcher("/ChiTietSP/updateChiTietSP.jsp").forward(request, response);
 
     }
 
@@ -94,13 +91,12 @@ public class ServletChiTietSP extends HttpServlet {
         List<DongSP> listDongSP = new ArrayList<>();
         listDongSP = dongSPRepository.getAll();
         request.setAttribute("listDongSP", listDongSP);
-
-        request.getRequestDispatcher("/ChiTietSP/addChiTietSP.jsp").forward(request,response);
+        request.getRequestDispatcher("/ChiTietSP/addChiTietSP.jsp").forward(request, response);
 
     }
 
     private void viewUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/ChiTietSP/updateChiTietSP.jsp").forward(request,response);
+        request.getRequestDispatcher("/ChiTietSP/updateChiTietSP.jsp").forward(request, response);
 
     }
 
@@ -112,20 +108,19 @@ public class ServletChiTietSP extends HttpServlet {
     }
 
     private void hienThi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<ChiTietSP>listChiTietSP = chiTietSPRepository.getAll();
-        request.setAttribute("listChiTietSP",listChiTietSP);
-        request.getRequestDispatcher("/ChiTietSP/ChiTietSP.jsp").forward(request,response);
+        ArrayList<ChiTietSP> listChiTietSP = chiTietSPRepository.getAll();
+        request.setAttribute("listChiTietSP", listChiTietSP);
+        request.getRequestDispatcher("/ChiTietSP/ChiTietSP.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String uri = request.getRequestURI();
-    if(uri.contains("add")){
-        this.addChiTietSP(request,response);
-    }
-    else if(uri.contains("update")){
-        this.updateChiTietSP(request,response);
-    }
+        String uri = request.getRequestURI();
+        if (uri.contains("add")) {
+            this.addChiTietSP(request, response);
+        } else if (uri.contains("update")) {
+            this.updateChiTietSP(request, response);
+        }
     }
 
     private void updateChiTietSP(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -151,6 +146,7 @@ public class ServletChiTietSP extends HttpServlet {
         chiTietSP.setMauSac(mauSac);
         chiTietSP.setSanpham(sanPham);
         chiTietSP.setNsx(nsx);
+        chiTietSP.setDongSP(dongSP);
         chiTietSPRepository.update(chiTietSP);
         response.sendRedirect("/ServletChiTietSP/hien-thi");
     }
@@ -175,6 +171,7 @@ public class ServletChiTietSP extends HttpServlet {
         chiTietSP.setGiaNhap(gianhap);
         chiTietSP.setMauSac(mauSac);
         chiTietSP.setSanpham(sanPham);
+        chiTietSP.setDongSP(dongSP);
         chiTietSP.setNsx(nsx);
         chiTietSPRepository.add(chiTietSP);
         response.sendRedirect("/ServletChiTietSP/hien-thi");

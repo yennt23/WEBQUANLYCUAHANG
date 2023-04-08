@@ -15,10 +15,12 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<header>
-  <h3 style="text-align: center;">Thêm</h3>
-</header>
+<jsp:include page="../header.jsp" />
 <main class="container">
+  <header>
+    <br>
+    <h3 style="text-align: center;">Quản Lý Cửa Hàng</h3>
+  </header>
   <section>
     <form action="/ServletCuaHang/add" method="post">
       <div class="row mt-4">
@@ -52,7 +54,6 @@
           Add
         </button>
       </div>
-
     </form>
   </section>
 </main>

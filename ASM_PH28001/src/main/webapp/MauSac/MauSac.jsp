@@ -14,8 +14,11 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+<main class="container">
 <header>
-    <h3 style="text-align: center;">Quản Lý Dong SP</h3>
+    <br>
+    <h3 style="text-align: center;">Quản Lý Màu Sắc</h3>
     <section>
         <a href="/ServletMauSac/view-add" class="btn btn-success " tabindex="-1" role="button"
            aria-disabled="true">Add</a>
@@ -37,14 +40,15 @@
             <td>${l.ma}</td>
             <td>${l.ten}</td>
             <td>
-                <a href="/ChucVu/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                <a href="/ServletMauSac/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
                    aria-disabled="true">Remove</a>
-                <a href="/ChucVu/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                <a href="/ServletMauSac/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
                    aria-disabled="true">update</a>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+</main>
 </body>
 </html>

@@ -15,13 +15,18 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
+<jsp:include page="../header.jsp" />
 <main class="container">
+<header>
+    <br>
+    <h3 style="text-align: center;">Quản Lý Chuc Vu</h3>
+</header>
     <section>
         <form action="/ChucVu/update" method="post">
             <div class="row mt-4">
                 <div class="col-6">
                     <label>Id</label>
-                    <input type="text" class="form-control" value="${chucVu.id}" name="id"/>
+                    <input type="hidden" class="form-control" value="${chucVu.id}" name="id"/>
                 </div>
                 <div class="col-6">
                     <label>Mã</label>

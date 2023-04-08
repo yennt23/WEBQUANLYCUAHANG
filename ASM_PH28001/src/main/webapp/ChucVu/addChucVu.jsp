@@ -16,6 +16,7 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
+<jsp:include page="../header.jsp" />
 <header>
     <h3 style="text-align: center;">Thêm</h3>
 </header>

@@ -98,7 +98,12 @@ public class ServletCuaHang extends HttpServlet {
         String diaChi = request.getParameter("diaChi");
         String thanhPho = request.getParameter("thanhPho");
         String quocGia = request.getParameter("quocGia");
-        CuaHang cuaHang = new CuaHang(ma,ten,diaChi,thanhPho,quocGia);
+        CuaHang cuaHang = new CuaHang();
+        cuaHang.setMa(ma);
+        cuaHang.setTen(ten);
+        cuaHang.setDiaChi(diaChi);
+        cuaHang.setThanhPho(thanhPho);
+        cuaHang.setQuocGia(quocGia);
         cuaHangRepository.add(cuaHang);
         response.sendRedirect("/ServletCuaHang/hien_thi");
 

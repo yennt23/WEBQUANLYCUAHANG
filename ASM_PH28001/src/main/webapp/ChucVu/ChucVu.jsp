@@ -14,37 +14,41 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<header>
-    <h3 style="text-align: center;">Quản Lý Chuc Vu</h3>
-    <section>
-        <a href="/ChucVu/view-add" class="btn btn-success " tabindex="-1" role="button"
-           aria-disabled="true">Add</a>
-    </section>
-</header>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Ma</th>
-        <th scope="col">Ten</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${listChucVu}" var="l">
+<jsp:include page="../header.jsp" />
+<main class="container">
+    <header>
+        <br>
+        <h3 style="text-align: center;">Quản Lý Chuc Vu</h3>
+        <section>
+            <a href="/ChucVu/view-add" class="btn btn-success " tabindex="-1" role="button"
+               aria-disabled="true">Add</a>
+        </section>
+    </header>
+    <table class="table">
+        <thead>
         <tr>
-            <td>${l.id}</td>
-            <td>${l.ma}</td>
-            <td>${l.ten}</td>
-            <td>
-                <a href="/ChucVu/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
-                   aria-disabled="true" onclick="return confirm('Bạn có muốn xóa không')">Remove</a>
-                <a href="/ChucVu/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
-                   aria-disabled="true" onclick="return confirm('Bạn có muốn xem update không')" >update</a>
-            </td>
+            <th scope="col">ID</th>
+            <th scope="col">Ma</th>
+            <th scope="col">Ten</th>
+            <th scope="col">Action</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach items="${listChucVu}" var="l">
+            <tr>
+                <td>${l.id}</td>
+                <td>${l.ma}</td>
+                <td>${l.ten}</td>
+                <td>
+                    <a href="/ChucVu/delete?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                       aria-disabled="true" onclick="return confirm('Bạn có muốn xóa không')">Remove</a>
+                    <a href="/ChucVu/detail?id=${l.id}" class="btn btn-danger " tabindex="-1" role="button"
+                       aria-disabled="true" onclick="return confirm('Bạn có muốn xem update không')">update</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
